@@ -1,0 +1,15 @@
+body {
+    background: blanchedalmond;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
