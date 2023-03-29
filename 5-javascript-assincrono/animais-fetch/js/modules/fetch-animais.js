@@ -3,25 +3,31 @@ import initAnimaNumbers from './anima-numeros.js';
 export default function initFetchAnimais() {
     // Função assíncrona para buscar a API
     async function fetchAnimais(url) {
-        // Busca a url da api
-        const animaisResponse = await fetch(url);
-        // Interpreta o texto em formato json
-        const animaisJson = await animaisResponse.json();
-        // Busca a div grid-numeros pela classe
-        const numerosGrid = document.querySelector('.grid-numeros');
+        // Tente executar
+        try {
+            // Busca a url da api
+            const animaisResponse = await fetch(url);
+            // Interpreta o texto em formato json
+            const animaisJson = await animaisResponse.json();
+            // Busca a div grid-numeros pela classe
+            const numerosGrid = document.querySelector('.grid-numeros');
 
-        // Para cada item no arquivo JSON, executar a função
-        // createAnimal
-        animaisJson.forEach((animal) => {
-            // Coloca dentro da constante todas as divs criadas
-            // com a função createAnimal
-            const divAnimal = createAnimal(animal);
-            // Dentro de numerosGrid, append a divAnimal
-            numerosGrid.appendChild(divAnimal);
-        });
-        // Inicia a função de animação somente quando
-        // o fetch terminar
-        initAnimaNumbers();
+            // Para cada item no arquivo JSON, executar a função
+            // createAnimal
+            animaisJson.forEach((animal) => {
+                // Coloca dentro da constante todas as divs criadas
+                // com a função createAnimal
+                const divAnimal = createAnimal(animal);
+                // Dentro de numerosGrid, append a divAnimal
+                numerosGrid.appendChild(divAnimal);
+            });
+            // Inicia a função de animação somente quando
+            // o fetch terminar
+            initAnimaNumbers();
+        // Se tiver algum error, estará no log
+        } catch (error) {
+            console.log(error);
+        }
     }
     // url do arquivo JSON sendo usado como parâmetro
     fetchAnimais('./animaisApi.json');
